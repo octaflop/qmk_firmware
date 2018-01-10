@@ -13,6 +13,7 @@
 #define _COLEMAK 1
 #define _DVORAK 2
 #define _GAME 3
+#define _QWERTY_CAPS 4
 #define _ARROW 12
 #define _NUMPAD 13
 #define _LOWER 14
@@ -21,6 +22,7 @@
 
 // Macro name shortcuts
 #define QWERTY M(_QWERTY)
+#define QWERTY_CAPS M(_QWERTY_CAPS)
 #define COLEMAK M(_COLEMAK)
 #define DVORAK M(_DVORAK)
 #define GAME M(_GAME)
@@ -53,6 +55,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   {KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                KC_6,    KC_7,    KC_8,     KC_9,     KC_0,     KC_BSPC},
   {KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                KC_Y,    KC_U,    KC_I,     KC_O,     KC_P,     KC_BSLASH},
   {KC_ESC, KC_A,    KC_S,    KC_D,    KC_F,                KC_G,    KC_H,    KC_J,     KC_K,     KC_L,     KC_SCLN, KC_QUOT},
+  {KC_LSFT,   KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                KC_N,    KC_M,    KC_COMM,  KC_DOT,   KC_SLSH,  KC_ENT },
+  {M(M_BL),   KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_MINUS, KC_EQUAL, KC_LBRC,  KC_RBRC}
+},
+
+/* Qwerty Caps already set
+ * ,-----------------------------------------------------------------------------------.
+ * |   ~  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | Bksp |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * | Tab  |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  |  \   |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * | CAPS |   A  |   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  |   ;  |  "   |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |Enter |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * | Brite| Ctrl | Alt  | GUI  |Lower |    Space    | Raise|   -  |  =  |   [   |   ]  |
+ * `-----------------------------------------------------------------------------------'
+ */
+[_QWERTY_CAPS] = {
+  {KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                KC_6,    KC_7,    KC_8,     KC_9,     KC_0,     KC_BSPC},
+  {KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                KC_Y,    KC_U,    KC_I,     KC_O,     KC_P,     KC_BSLASH},
+  {KC_CAPS, KC_A,    KC_S,    KC_D,    KC_F,                KC_G,    KC_H,    KC_J,     KC_K,     KC_L,     KC_SCLN, KC_QUOT},
   {KC_LSFT,   KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                KC_N,    KC_M,    KC_COMM,  KC_DOT,   KC_SLSH,  KC_ENT },
   {M(M_BL),   KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_MINUS, KC_EQUAL, KC_LBRC,  KC_RBRC}
 },
@@ -141,27 +164,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   {KC_P0,  KC_P0,   KC_PDOT, KC_PENT,  _______, _______, _______, _______, _______, _______, _______, _______},
 },
 
-/* Lower
+/* Raise
  * ,-----------------------------------------------------------------------------------.
  * |   ~  |   !  |   @  |   #  |   $  |   %  |   ^  |   &  |   *  |   (  |   )  |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      | Bksp | PgUp |  Del |      |      | Home | PgDn | PgUp | End  |      |      |
+ * |      | Bksp | PgUp |  Del |      |  Home| PgDn |  PgUp|  End  |     |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      | Home | PgDn |  End |      |      | Left | Down |  Up  | Right|   ]  |  \   |
+ * |      | Home | PgDn |  End |      |  Left|  Down|  Up  | Right |     |   ]  |  \   |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      | Pause| Ins  |      |      | Print|Screen| End  |      |      |      |Enter |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |             |      |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
-[_LOWER] = {
+[_RAISE] = {
   {KC_GRV, KC_EXLM, KC_AT,    KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN,  KC_RPRN, KC_BSPC},
-  {_______, KC_BSPC, KC_PGUP, KC_DEL,  _______, _______, _______, KC_HOME, KC_PGDN, KC_PGUP,  KC_END, _______},
-  {_______, KC_HOME, KC_PGDN, KC_END,  _______, _______, _______, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, _______},
+  {_______, KC_BSPC, KC_PGUP, KC_DEL,  _______, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END, _______, _______},
+  {_______, KC_HOME, KC_PGDN, KC_END,  _______, _______, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, _______, _______},
   {_______, KC_PAUSE, KC_INS, _______, KC_PSCR, KC_PSCR, _______, _______,  _______, _______,  _______, _______},
   {_______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______, _______}
 },
-/* Raise
+/* Lower
  * ,-----------------------------------------------------------------------------------.
  * |   `  |   F1 |  F2  |  F3  |  F4  |  F5  |  F6  |  F7  |  F8  |  F9  |  F10 | Del  |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -174,7 +197,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * | Vol- |      |      |      |      |             |      |   +  | Enter|  0   |  .   |
  * `-----------------------------------------------------------------------------------'
  */
-[_RAISE] = {
+[_LOWER] = {
   {KC_GRV,  KC_F1,    KC_F2,   KC_F3,    KC_F4,          KC_F5,   KC_F6,   KC_F7,   KC_F8,    KC_F9,   KC_F10, KC_DEL},
   {KC_MUTE, KC_BSPC,  KC_UP,   KC_DEL,   KC_WWW_FORWARD, KC_BTN1, KC_MS_U, KC_BTN2, KC_PSLS,  KC_P7,   KC_P8,  KC_P9},
   {_______, KC_LEFT,  KC_DOWN, KC_RIGHT, KC_WWW_REFRESH, KC_MS_L, KC_MS_D, KC_MS_R, KC_PAST,  KC_P4,   KC_P5,  KC_P6},
@@ -197,9 +220,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_ADJUST] = {
-  {_______, _______,  QWERTY, COLEMAK,  DVORAK, _______,          _______,        _______, _______, _______, _______, _______},
+  {_______, QWERTY_CAPS,  QWERTY, COLEMAK,  DVORAK, _______,          _______,        _______, _______, _______, _______, _______},
   {_______, RESET,   _______, AG_NORM, AG_SWAP, _______,          _______,        _______, _______, _______, _______, KC_DEL},
-  {_______, _______, _______, AU_ON,   AU_OFF,  MI_ON,            MI_OFF,         QWERTY,  COLEMAK,  DVORAK, _______, _______},
+  {_______, _______, _______, AU_ON,   AU_OFF,  MI_ON,            MI_OFF,         QWERTY,  COLEMAK,  DVORAK, QWERTY_CAPS, _______},
   {_______, MUV_DE,  MUV_IN,  MU_ON,   MU_OFF,  KC_SYSTEM_SLEEP,  KC_SYSTEM_WAKE, ARROW,      GAME,  NUMPAD, _______, _______},
   {_______, _______, _______, _______, _______, RESET,            RESET,          _______, _______, _______, _______, _______}
 }
@@ -240,6 +263,14 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
               PLAY_SONG(tone_qwerty);
             #endif
             persistent_default_layer_set(1UL<<_QWERTY);
+          }
+          break;
+        case _QWERTY_CAPS:
+          if (record->event.pressed) {
+            #ifdef AUDIO_ENABLE
+              PLAY_SONG(tone_qwerty);
+            #endif
+            persistent_default_layer_set(1UL<<_QWERTY_CAPS);
           }
           break;
         case _COLEMAK:
