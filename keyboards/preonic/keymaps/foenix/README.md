@@ -1,6 +1,8 @@
+updated by foenix
+
 CMD-Preonic
 ===================
-The CMD project seeks to improve productivity by optimizing usage of the left hand via clever use of the function layers. 
+The CMD project seeks to improve productivity by optimizing usage of the left hand via clever use of the function layers.
 
 >Note: This project is currently optimized for grid layout, and has not been confirmed to work 100% on MIT layout, although it is expected to work correctly.
 
